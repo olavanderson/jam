@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="Article" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="canonical" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="excerpt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="published" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rowid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="seourl" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="id" value="post_id"/>
+                <entry key="seourl" value="seo_url"/>
+            </userInfo>
+        </attribute>
+        <attribute name="slug" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Author" inverseName="article" inverseEntity="Author" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="article" inverseEntity="Category" syncable="YES"/>
+        <relationship name="featured_image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeaturedImage" inverseName="article" inverseEntity="FeaturedImage" syncable="YES"/>
+        <relationship name="magazine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Magazine" inverseName="articles" inverseEntity="Magazine" syncable="YES"/>
+        <relationship name="related" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RelatedArticle" inverseName="article" inverseEntity="RelatedArticle" syncable="YES"/>
+        <userInfo>
+            <entry key="author" value="Author"/>
+            <entry key="featured_image" value="FeaturedImage"/>
+            <entry key="id" value="post_id"/>
+            <entry key="related" value="RelatedArticle"/>
+            <entry key="RelatedArticle" value="article"/>
+            <entry key="rowid" value="post_id"/>
+            <entry key="seourl" value="seo_url"/>
+        </userInfo>
+    </entity>
+    <entity name="Author" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rowid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="slug" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="author" inverseEntity="Article" syncable="YES"/>
+        <userInfo>
+            <entry key="desc" value="description"/>
+            <entry key="id" value="ID"/>
+        </userInfo>
+    </entity>
+    <entity name="Category" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rowid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="category" inverseEntity="Article" syncable="YES"/>
+        <userInfo>
+            <entry key="id" value="name"/>
+        </userInfo>
+    </entity>
+    <entity name="FeaturedImage" syncable="YES">
+        <attribute name="altText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mobileURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rowid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="featured_image" inverseEntity="Article" syncable="YES"/>
+        <userInfo>
+            <entry key="altText" value="alt_text"/>
+            <entry key="id" value="ID"/>
+            <entry key="mobileURL" value="source_mobile"/>
+            <entry key="rowid" value="ID"/>
+        </userInfo>
+    </entity>
+    <entity name="Magazine" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rowid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="articles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Article" inverseName="magazine" inverseEntity="Article" syncable="YES"/>
+        <userInfo>
+            <entry key="articles" value="Article"/>
+            <entry key="id" value="ID"/>
+            <entry key="rowid" value="ID"/>
+        </userInfo>
+    </entity>
+    <entity name="RelatedArticle" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imgAlt" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="id" value="post_id"/>
+                <entry key="imageURL" value="img_src"/>
+                <entry key="imgAtl" value="img_alt"/>
+            </userInfo>
+        </attribute>
+        <attribute name="rowid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="id" value="ID"/>
+                <entry key="rowid" value="ID"/>
+            </userInfo>
+        </attribute>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="related" inverseEntity="Article" syncable="YES"/>
+        <userInfo>
+            <entry key="id" value="post_id"/>
+            <entry key="imageURL" value="img_src"/>
+            <entry key="imgAlt" value="img_alt"/>
+            <entry key="rowid" value="post_id"/>
+        </userInfo>
+    </entity>
+    <elements>
+        <element name="Article" positionX="-641" positionY="42" width="128" height="268"/>
+        <element name="RelatedArticle" positionX="-362" positionY="324" width="128" height="133"/>
+        <element name="Author" positionX="-362" positionY="72" width="128" height="133"/>
+        <element name="Category" positionX="-362" positionY="207" width="128" height="118"/>
+        <element name="FeaturedImage" positionX="-362" positionY="-54" width="128" height="118"/>
+        <element name="Magazine" positionX="-459" positionY="144" width="128" height="105"/>
+    </elements>
+</model>
